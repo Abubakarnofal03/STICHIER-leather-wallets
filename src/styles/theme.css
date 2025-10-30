@@ -1,0 +1,66 @@
+:root {
+  --noir-900:#0E0E0E; --noir-800:#141212; --espresso:#2B1D15;
+  --cognac:#A66A3D; --chestnut:#8B5E3C;
+  --sand:#E6D4C3; --parchment:#D0BFAE; 
+  --goldline: #3E2E1E;
+  --success:#27AE60; --warning:#F2C94C; --error:#EB5757;
+
+  --bg: var(--noir-900);
+  --bg-elev: #171412;
+  --text: #F5EFE9;
+  --text-muted: var(--parchment);
+  --border: color-mix(in srgb, var(--goldline) 25%, transparent);
+  --accent: var(--cognac);
+  --accent-2: var(--chestnut);
+
+  --shadow-xl: 0 30px 80px color-mix(in srgb, #000 70%, transparent);
+  --shadow-soft: 0 8px 24px color-mix(in srgb, #000 55%, transparent);
+}
+
+.st-noir {
+  background: radial-gradient(1200px 600px at 30% -10%, #2B1D15 0%, #141212 45%, #0E0E0E 100%);
+}
+.st-noir-soft {
+  background: linear-gradient(180deg, #141212 0%, #0E0E0E 100%);
+}
+
+.st-grain::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.03) 0, transparent 60%),
+              radial-gradient(1px 1px at 80% 30%, rgba(255,255,255,.02) 0, transparent 60%);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Motion utilities with reduced-motion safety */
+/* Animations disabled globally per request */
+.reveal-up { opacity: 1; transform: none; }
+.reveal-in { opacity: 1; transform: none; }
+.hover-float { }
+.hover-float:hover { }
+
+@keyframes st-reveal-up { to { opacity: 1; transform: translateY(0); } }
+@keyframes st-reveal-in { to { opacity: 1; transform: scale(1); } }
+
+/* Animated luxe border for premium surfaces */
+.st-animated-border{ position: relative; }
+.st-animated-border::before{
+  content:""; position:absolute; inset:-1px; border-radius: inherit; padding:1px;
+  background: conic-gradient(from 0deg, var(--cognac), var(--chestnut), var(--cognac));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; /* Safari */
+  mask-composite: exclude;     /* Others */
+  opacity:.16; filter: blur(.15px);
+  animation: none;
+  pointer-events: none;
+}
+.st-animated-border:hover::before{ }
+@keyframes st-rotate{ to{ transform: rotate(1turn); } }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .st-animated-border::before{ animation: none; }
+}
+
+
